@@ -196,6 +196,11 @@ public final class EndLabelSorter implements ILayoutProcessor<LGraph> {
 
         @Override
         public int compare(final LabelGroup group1, final LabelGroup group2) {
+            if (group1.edge.getSource() == null) {
+                return 1;
+            } else if (group2.edge.getSource() == null) {
+                return 2;
+            }
             // If they are not connected to the same source port, use the difference as a basis for the comparison
             int sourcePortDiff = Integer.compare(
                     group1.edge.getSource().id,
